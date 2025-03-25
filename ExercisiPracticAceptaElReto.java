@@ -17,7 +17,8 @@ public class ExercisiPracticAceptaElReto {
         //Leemos la primera línea introducida
         Scanner scanner = new Scanner(System.in);
         
-        //Mientras no sea 0, en cada iteración, leeremos las siguientes 3 líneas que contendrán la 
+        //En cada iteración, leeremos la primera línea, que contiene la cantidad 
+        //de hangares disponibles en una determinada base, mientras no sea 0.
         for (int numeroHangares = scanner.nextInt(); numeroHangares != 0; numeroHangares = scanner.nextInt()) {
             int [] hangares = new int [numeroHangares];
             
@@ -27,9 +28,9 @@ public class ExercisiPracticAceptaElReto {
             
             for (int i = 0; i < numeroHangares; i++) {
                 hangares[i] = Integer.parseInt(partesCapacidadHangares[i]);
-                System.out.print(hangares[i]+" ");
+//                System.out.print(hangares[i]+" ");
             }
-            System.out.println("");
+//            System.out.println("");
             
             //scanner = new Scanner(System.in);
         }
@@ -37,6 +38,8 @@ public class ExercisiPracticAceptaElReto {
 //        String numeros [] = numeroHangares.split(" ");
 //        
 //        int [] hangares = new int [numeros.length];
+//        los H numeros con sus tamaños,
+//        la cantidad de naves que llegan a la base y seguido de N números con sus tamaños, en este órden.
     }
 
 }
