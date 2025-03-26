@@ -1,21 +1,14 @@
 /**
- * Fecha inicio:
- * Fecha fin:
- *
- * @author Ignasi Paredes
- */
+* @author Ignasi Paredes Casasnovas
+*/
 
 package exercisipracticaceptaelreto;
 
-import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class ExercisiPracticAceptaElReto {
     public static void main(String[] args) {
-        //Creamos el string donde iremos guardando la salida del programa (los SI y NO)
-        String salida = "";
-        
         //Leemos la primera línea introducida
         Scanner scanner = new Scanner(System.in);
         
@@ -23,11 +16,11 @@ public class ExercisiPracticAceptaElReto {
         //de hangares disponibles en una determinada base, mientras no sea 0.
         for (int numeroHangares = scanner.nextInt(); numeroHangares != 0; numeroHangares = scanner.nextInt()) {
             
-            PriorityQueue<Integer> heap = new PriorityQueue<>(numeroHangares,Collections.reverseOrder());
+            PriorityQueue<Hangar> heap = new PriorityQueue<Hangar>();
             
             //Obtenemos los H números con sus tamaños dentro de un array
             for (int i = 0; i < numeroHangares; i++) {
-                heap.offer(scanner.nextInt());
+                heap.offer(new Hangar(scanner.nextInt()));
             }
 
             //Obtenemos la cantidad de naves que llegan a la base
@@ -38,22 +31,32 @@ public class ExercisiPracticAceptaElReto {
             for (int i = 0; i < cantidadNaves; i++) {
                 tamañoNaves[i] = scanner.nextInt();
             }
-            
-            ////////////////////////////////////////////////////////////////////
-            // Ahora empezamos con el algoritmo heapSort
 
-            String resultadoIteracion = "SI\n";
+            String resultadoIteracion = "SI";
             //Iteramos en cada nave por orden de llegada comprobando si podemos meterla
             for (int nave : tamañoNaves) {
-                if (heap.peek() < nave) {
-                    resultadoIteracion = "NO\n";
+                if (heap.peek().capacidad < nave) {
+                    resultadoIteracion = "NO";
                     break;
                 }
-                heap.offer(heap.poll() - nave);
+                heap.offer(new Hangar(heap.poll().capacidad - nave));
             }
-            salida += resultadoIteracion;
+            System.out.println(resultadoIteracion);
         }
-        
-        System.out.print(salida);
+    }
+    
+    // Clase Hangar con prioridad según la capacidad
+    public static class Hangar implements Comparable {
+        private int capacidad;
+
+        Hangar(int capacidad) {
+            this.capacidad = capacidad;
+        }
+
+        @Override
+        public int compareTo(Object o) {
+            //Ordenar de manera descendiente por capacidad
+            return ((Hangar)o).capacidad - this.capacidad;
+        }
     }
 }
