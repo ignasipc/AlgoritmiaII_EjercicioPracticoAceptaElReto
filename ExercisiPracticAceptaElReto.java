@@ -23,32 +23,24 @@ public class ExercisiPracticAceptaElReto {
         //de hangares disponibles en una determinada base, mientras no sea 0.
         for (int numeroHangares = scanner.nextInt(); numeroHangares != 0; numeroHangares = scanner.nextInt()) {
             
-            //Obtenemos los H números con sus tamaños dentro de un array
-            String [] partesCapacidadHangares = new Scanner(System.in).nextLine().split(" ");
+            PriorityQueue<Integer> heap = new PriorityQueue<>(numeroHangares,Collections.reverseOrder());
             
-            int [] hangares = new int [numeroHangares];
+            //Obtenemos los H números con sus tamaños dentro de un array
             for (int i = 0; i < numeroHangares; i++) {
-                hangares[i] = Integer.parseInt(partesCapacidadHangares[i]);
+                heap.offer(scanner.nextInt());
             }
 
             //Obtenemos la cantidad de naves que llegan a la base
-            int cantidadNaves = new Scanner(System.in).nextInt();
+            int cantidadNaves = scanner.nextInt();
             
-            //Obtenemos los tamaños de las naves por orden de llegada
-            String [] partesCantidadNaves = new Scanner(System.in).nextLine().split(" ");
-            
+            //Obtenemos los tamaños de las naves por orden de llegada            
             int [] tamañoNaves = new int [cantidadNaves];
             for (int i = 0; i < cantidadNaves; i++) {
-                tamañoNaves[i] = Integer.parseInt(partesCantidadNaves[i]);
+                tamañoNaves[i] = scanner.nextInt();
             }
             
             ////////////////////////////////////////////////////////////////////
             // Ahora empezamos con el algoritmo heapSort
-            PriorityQueue<Integer> heap = new PriorityQueue<>(Collections.reverseOrder());
-            
-            for (int num : hangares) { 
-                heap.offer(num); 
-            }
 
             String resultadoIteracion = "SI\n";
             //Iteramos en cada nave por orden de llegada comprobando si podemos meterla
