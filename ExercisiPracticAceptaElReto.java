@@ -62,7 +62,7 @@ public class ExercisiPracticAceptaElReto {
     }
     
     // Clase Hangar con prioridad según la capacidad
-    public static class Hangar implements Comparable {
+    public static class Hangar implements Comparable<Hangar> {
         //Atributo indicando la capacidad del hangar
         private int capacidad;
 
@@ -73,8 +73,8 @@ public class ExercisiPracticAceptaElReto {
 
         //Modificamos el método compareTo para ordenar la capacidad de manera descendente
         @Override
-        public int compareTo(Object o) {
-            return ((Hangar)o).capacidad - this.capacidad;
+        public int compareTo(Hangar o) {
+            return o.capacidad - this.capacidad;
         }
     }
 }
